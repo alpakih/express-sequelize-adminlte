@@ -1,0 +1,19 @@
+
+{{#if messages.success}}
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading">Success</h4>
+        <p>{{messages.success}}</p>
+
+    </div>
+{{/if}}
+<h1>
+       {{title}}
+        <small>{{features}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> {{breadcrumb.url}}</a></li>
+        <li class="active">{{breadcrumb.view}}</li>
+      </ol>

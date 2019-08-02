@@ -1,0 +1,5 @@
+{
+    "server": {
+      "port": 3003
+    },"session_secret": "qwertyuiop123456789prod"
+  }

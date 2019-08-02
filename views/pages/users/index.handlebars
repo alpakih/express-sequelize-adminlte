@@ -1,0 +1,73 @@
+<div class="col-md-12">
+
+    {{#if messages.error}}
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading">Failed</h4>
+        <p>{{messages.error}}</p>
+    </div>
+    {{/if}}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{judul}}</h3>
+            <span class="pull-right"><a href="/users/create" class="btn btn-info"><i class="fa fa-plus"></i> </a></span>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <div class="box-body">
+            <table id="table-users" class="table table-condensed table-bordered table-hover" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Usrname</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Active</th>
+                        <th colspan="2">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+
+</div>
+{{#section 'script'}}
+
+<script type="application/javascript">
+    $(document).ready(function () {
+        var t = $('#table-users').DataTable({
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/users/list"
+            },
+            columns: [
+                { data: "id", name: "id", bVisible: false },
+                { data: "username", name: "username" },
+                { data: "email", name: 'email' },
+                { data: "role.description", name: 'role' }
+
+            ],
+            "rowCallback": function (row, data, index) {
+                console.log(data.id);
+                var newBtns = '<td align="center"><a href="/users/update/' + data.id + '"><i class="fa fa-edit"></i> </a> ' +
+                    '</td><td align="center"><a href="/users/delete/' + data.id + '?_method=DELETE"><i class="fa fa-eraser"></i></a></td>';
+                $(row).append(newBtns);
+            }
+        })
+    });
+
+</script>
+
+{{/section}}
